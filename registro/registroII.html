@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Registro</title>
+    <link href="assets/css/buttons.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/personalizado.css" rel="stylesheet">
+</head>
+<body>
+<script>
+    var i = 0;
+    var n;
+    var persona = new Array();
+    var contras = new Array();
+    function validar() {
+        if (persona[i].length <= 0 || contras[i].length <= 0) {
+            document.getElementById('consola').innerHTML = ' Introduce un usuario/clave válido/a. ';
+            registro();
+        } else {
+            document.getElementById('consolab').innerHTML = ' Usuario registrado. Numero ' + i;
+        }
+        if (contras[i] == 'autogenerar') {
+            contras[i] = Math.floor((Math.random() * 10000000) + 1);
+            document.getElementById('consola').innerHTML = ' Se ha generado una clave automatica: ' + contras[i];
+        }
+        if (contras[i] <= 1000000) {
+            validar();
+        } else {
+            i++
+        }
+    }
+    function registro() {
+        persona[i] = prompt('Introduce tu usuario', 'usuario');
+        contras[i] = prompt('Introduce tu clave', 'autogenerar');
+        validar();
+    }
+    function entrar() {
+        inpUsu = prompt('Introduce tu usuario registrado');
+        inpCla = prompt('Introduce tu clave');
+        inpNum = prompt('Introduce tu numero de usuario');
+        if (inpUsu != persona[inpNum] || inpUsu <= 0 || inpCla != contras[inpNum]) {
+            document.getElementById('consola').innerHTML = ' Usuario incorrecto. ';
+        } else {
+            document.getElementById('consola').innerHTML = ' Usuario correcto. ';
+            document.getElementById('consolab').innerHTML = ' Hola ' + persona[inpNum] + '. Tu numero de usuario es ' + inpNum + ' y tu clave es ' + inpCla + '.';
+
+        }
+
+    }
+
+</script>
+    <div align="center">
+        <button type="button" class="btn btn-primary raised" onclick="registro()">Registrar</button>
+        <button type="button" class="btn btn-success raised" onclick="entrar()">Entrar</button>
+    </div>
+        <div align="left" class="CSSTablas">
+            <table>
+                <tr>
+                    <td>Consola</td>
+                </tr>
+                <tr>
+                    <td><p id="consola">-------------</p></td>
+                </tr>
+                <tr>
+                    <td><p id="consolab">-------------</p></td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>
