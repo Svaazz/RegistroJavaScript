@@ -10,10 +10,12 @@
 </head>
 <body>
 <script>
+    //Declaro la variable i para ser usada como contador.
     var i = 0;
-    var n;
+    //Declaro arrays para almacenar los nombres de usuarios y las respectivas claves.
     var persona = new Array();
     var contras = new Array();
+    //Creo esta funcion para validar el nombre/clave y autogenerar (en caso de que se utilice esta opcion) la clave
     function validar() {
         if (persona[i].length <= 0 || contras[i].length <= 0) {
             document.getElementById('consola').innerHTML = ' Introduce un usuario/clave válido/a. ';
@@ -31,11 +33,13 @@
             i++
         }
     }
+    //Creo esta funcion para registrar usuarios, y pongo por defecto en la clave el comando para autogenerar
     function registro() {
-        persona[i] = prompt('Introduce tu usuario', 'usuario');
+        persona[i] = prompt('Introduce tu usuario', 'usuario' + [i]);
         contras[i] = prompt('Introduce tu clave', 'autogenerar');
         validar();
     }
+    //Creo esta funcion para entrar y le incluyo un pequeño sistema de validacion
     function entrar() {
         inpUsu = prompt('Introduce tu usuario registrado');
         inpCla = prompt('Introduce tu clave');
